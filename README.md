@@ -1,4 +1,4 @@
-# 📚 College Library Management System
+ # 📚 College Library Management System
 
 A full-featured **Library Management System** built with **React.js** (frontend) and **Node.js/Express.js** (backend), designed specifically for college libraries. It offers smooth book tracking, student record handling, and issuance management.
 
@@ -39,7 +39,7 @@ A full-featured **Library Management System** built with **React.js** (frontend)
 
 ## Sequence Diagram
 
-![Book Issue Sequence Diagram](sequence.png"Book Issue Sequence Diagram")
+![Book Issue Sequence Diagram](sequence.png "Book Issue Sequence Diagram")
 
 ## Use Case Diagram
 
