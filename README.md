@@ -1,249 +1,263 @@
-# College Library Management System
+# 📚 College Library Management System
 
-A comprehensive fullstack library management system built with React.js frontend and Node.js/Express.js backend, designed for small college libraries to efficiently manage books, students, and book issuance.
+A full-featured **Library Management System** built with **React.js** (frontend) and **Node.js/Express.js** (backend), designed specifically for college libraries. It offers smooth book tracking, student record handling, and issuance management.
 
-## 🚀 Features
+---
 
-### Book Management
-- ✅ Add, update, and delete books
-- ✅ Search and filter by title, author, and category
-- ✅ Pagination support for large collections
-- ✅ Track total and available copies
-- ✅ Category-based organization
+## 🚀 Features Overview
 
-### Student Management
-- ✅ Complete student registration system
-- ✅ Search by name, roll number, phone, department, and semester
-- ✅ Department and semester filtering
-- ✅ View student's issued books and due dates
-- ✅ Contact information management
+### 📘 Book Management
 
-### Book Issue & Return System
-- ✅ Issue books to students with due date tracking
-- ✅ Return book functionality
-- ✅ Overdue book identification and tracking
-- ✅ Issue history and statistics
-- ✅ Availability validation before issuing
+* ✅ Add, update, and delete books
+* ✅ Search by title, author, and category
+* ✅ Category-based filtering & pagination
+* ✅ Track total vs available copies
 
-### Dashboard & Analytics
-- ✅ Real-time statistics dashboard
-- ✅ Recent issues tracking
-- ✅ Overdue books monitoring
-- ✅ Quick action shortcuts
+### 👨‍🎓 Student Management
+
+* ✅ Register and update student info
+* ✅ Search by name, roll number, phone, department, semester
+* ✅ View student-issued books with due dates
+
+### 🔁 Book Issue & Return
+
+* ✅ Issue books with due date tracking
+* ✅ Book return functionality
+* ✅ View overdue books
+* ✅ Validate availability before issue
+* ✅ Maintain issue history and usage stats
+
+### 📊 Dashboard & Analytics
+
+* ✅ Live issue/return stats
+* ✅ Overdue alerts
+* ✅ Recent transactions
+* ✅ Quick actions and shortcuts
+
+---
 
 ## 🛠 Tech Stack
 
 ### Frontend
-- **React.js** - Modern UI library
-- **React Router** - Client-side routing
-- **Tailwind CSS** - Utility-first CSS framework
-- **Lucide React** - Beautiful icons
-- **Axios** - HTTP client for API calls
+
+* **React.js** (with React Router)
+* **Tailwind CSS**
+* **Lucide React** (Icons)
+* **Axios**
 
 ### Backend
-- **Node.js** - JavaScript runtime
-- **Express.js** - Web application framework
-- **PostgreSQL** - Relational database
-- **express-validator** - Input validation
-- **CORS** - Cross-origin resource sharing
-- **Helmet** - Security middleware
 
-## 📋 Prerequisites
+* **Node.js** / **Express.js**
+* **MongoDB** with **Mongoose** ODM
+* **express-validator**, **cors**, **helmet**
 
-- Node.js (v16 or higher)
-- PostgreSQL (v12 or higher)
-- npm or yarn package manager
+---
+
+## 🧱 Project Structure (Tree)
+
+```
+college-library-management-system/
+├── backend/
+│   
+│   ├── models/
+│   ├── routes/
+│   ├── middleware/
+│   ├── utils/
+│   ├── .env.example
+│   └── server.js
+├── 
+│   ├── src/
+│   │   ├── components/
+│   │   ├── context/
+│   │   ├── pages/
+│   │   ├── services/
+│   │   └── App.jsx
+│   ├── public/
+│   └── vite.config.js
+├── README.md
+├── package.json
+└── docs/
+```
+
+---
 
 ## ⚙️ Installation & Setup
 
 ### 1. Clone the Repository
+
 ```bash
-git clone <repository-url>
-cd library-management-system
+git clone <repo-url>
+cd college-library-management-system
 ```
 
-### 2. Backend Setup
+### 2. Backend Setup (MongoDB)
+
 ```bash
-# Install backend dependencies
 cd backend
 npm install
-
-# Create PostgreSQL database
-createdb library_db
-
-# Set up environment variables
 cp .env.example .env
-# Edit .env with your database credentials
-
-# Initialize database schema and sample data
-npm run init-db
-
-# Start the backend server
+# Add your MongoDB URI and JWT_SECRET to .env
 npm run dev
 ```
 
 ### 3. Frontend Setup
-```bash
-# Install frontend dependencies (from root directory)
-npm install
 
-# Start the frontend development server
+```bash
+cd ..
+npm install
 npm run dev
 ```
 
-### 4. Access the Application
-- Frontend: http://localhost:5173
-- Backend API: http://localhost:5000
+### 4. Access Application
 
-## 🗄️ Database Schema
-
-### Books Table
-```sql
-- id (Primary Key)
-- title (VARCHAR)
-- author (VARCHAR)
-- isbn (VARCHAR, Unique)
-- total_copies (INTEGER)
-- available_copies (INTEGER)
-- category (VARCHAR)
-- created_at (TIMESTAMP)
-- updated_at (TIMESTAMP)
-```
-
-### Students Table
-```sql
-- id (Primary Key)
-- name (VARCHAR)
-- roll_number (VARCHAR, Unique)
-- department (VARCHAR)
-- semester (INTEGER)
-- phone (VARCHAR)
-- email (VARCHAR, Unique)
-- created_at (TIMESTAMP)
-- updated_at (TIMESTAMP)
-```
-
-### Book Issues Table
-```sql
-- id (Primary Key)
-- book_id (Foreign Key → books.id)
-- student_id (Foreign Key → students.id)
-- issue_date (TIMESTAMP)
-- due_date (TIMESTAMP)
-- return_date (TIMESTAMP, Nullable)
-- status (ENUM: 'issued', 'returned', 'overdue')
-- created_at (TIMESTAMP)
-- updated_at (TIMESTAMP)
-```
-
-## 🔌 API Endpoints
-
-### Books API
-- `GET /api/books` - Get all books with filtering and pagination
-- `GET /api/books/:id` - Get specific book details
-- `POST /api/books` - Add new book
-- `PUT /api/books/:id` - Update book
-- `DELETE /api/books/:id` - Delete book
-- `GET /api/books/meta/categories` - Get all categories
-
-### Students API
-- `GET /api/students` - Get all students with filtering and pagination
-- `GET /api/students/:id` - Get specific student details
-- `GET /api/students/:id/issued-books` - Get student's issued books
-- `POST /api/students` - Add new student
-- `PUT /api/students/:id` - Update student
-- `DELETE /api/students/:id` - Delete student
-- `GET /api/students/meta/departments` - Get all departments
-
-### Issues API
-- `GET /api/issues` - Get all issues with filtering and pagination
-- `POST /api/issues` - Issue a book to student
-- `PUT /api/issues/:id/return` - Return a book
-- `GET /api/issues/overdue` - Get overdue books
-- `GET /api/issues/stats` - Get issue statistics
-
-## 🎨 UI Features
-
-### Modern Design
-- Clean, professional interface with Tailwind CSS
-- Responsive design for desktop and mobile
-- Intuitive navigation with sidebar layout
-- Consistent color scheme and typography
-
-### User Experience
-- Real-time search and filtering
-- Pagination for large datasets
-- Loading states and error handling
-- Form validation with helpful error messages
-- Quick action buttons and shortcuts
-
-### Dashboard
-- Statistics cards showing key metrics
-- Recent issues timeline
-- Overdue books alerts
-- Quick access to common actions
-
-## 🔒 Security Features
-
-- Input validation and sanitization
-- SQL injection prevention
-- CORS configuration
-- Rate limiting
-- Helmet.js security headers
-- Environment variable protection
-
-## 📊 Sample Data
-
-The system includes sample data for testing:
-- 5 sample books across different categories
-- 4 sample students from various departments
-- No initial book issues (clean slate)
-
-## 🚀 Deployment
-
-### Backend Deployment
-1. Set up PostgreSQL database on your server
-2. Configure environment variables
-3. Run database migrations
-4. Deploy using PM2 or similar process manager
-
-### Frontend Deployment
-1. Build the production bundle: `npm run build`
-2. Deploy to static hosting (Netlify, Vercel, etc.)
-3. Configure API base URL for production
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature-name`
-3. Make your changes and commit: `git commit -m 'Add feature'`
-4. Push to the branch: `git push origin feature-name`
-5. Submit a pull request
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🐛 Known Issues
-
-- None currently reported
-
-## 📞 Support
-
-For support and questions:
-- Create an issue in the repository
-- Check the documentation in the `/docs` folder
-- Review the API documentation in the backend README
-
-## 🔮 Future Enhancements
-
-- Email notifications for overdue books
-- Book reservation system
-- Advanced reporting and analytics
-- Barcode scanning integration
-- Mobile app development
-- Multi-library support
+* Frontend: `http://localhost:5173`
+* Backend API: `http://localhost:5000/api`
 
 ---
 
-**Built with ❤️ for educational institutions**
+## 🗄️ Database Schema (MongoDB)
+
+### Books Collection
+
+```js
+{
+  _id,
+  title,
+  author,
+  isbn,
+  totalCopies,
+  availableCopies,
+  category,
+  createdAt,
+  updatedAt
+}
+```
+
+### Students Collection
+
+```js
+{
+  _id,
+  name,
+  rollNumber,
+  department,
+  semester,
+  phone,
+  email,
+  createdAt,
+  updatedAt
+}
+```
+
+### Issues Collection
+
+```js
+{
+  _id,
+  book: ObjectId (ref to Books),
+  student: ObjectId (ref to Students),
+  issueDate,
+  dueDate,
+  returnDate,
+  status: 'issued' | 'returned' | 'overdue',
+  createdAt,
+  updatedAt
+}
+```
+
+---
+
+## 🔌 API Endpoints
+
+### Auth
+
+* `POST /api/auth/login`
+* `POST /api/auth/register`
+
+### Books
+
+* `GET /api/books`
+* `GET /api/books/:id`
+* `POST /api/books`
+* `PUT /api/books/:id`
+* `DELETE /api/books/:id`
+* `GET /api/books/meta/categories`
+
+### Students
+
+* `GET /api/students`
+* `GET /api/students/:id`
+* `GET /api/students/:id/issued-books`
+* `POST /api/students`
+* `PUT /api/students/:id`
+* `DELETE /api/students/:id`
+* `GET /api/students/meta/departments`
+
+### Issues
+
+* `GET /api/issues`
+* `POST /api/issues`
+* `PUT /api/issues/:id/return`
+* `GET /api/issues/overdue`
+* `GET /api/issues/stats`
+
+---
+
+## 🎨 UI Features
+
+* 🖥 Responsive design
+* 🔎 Real-time search/filter
+* ⏳ Pagination
+* ✅ Form validation
+* 📈 Dashboard insights
+* 📚 Clean typography & layout
+
+---
+
+## 🔒 Security Highlights
+
+* Input sanitization with `express-validator`
+* Secure headers with `helmet`
+* CORS handling
+* JWT-based authentication
+* Token stored in localStorage
+
+---
+
+## 🧪 Sample Data
+
+* 5 sample books
+* 4 students
+* No issued books by default (clean start)
+
+---
+
+## 🚀 Deployment Guide
+
+### Backend
+
+* Deploy MongoDB (Mongo Atlas / self-hosted)
+* Use PM2 or Docker
+
+### Frontend
+
+```bash
+npm run build
+```
+
+
+
+---
+
+## 🙌 Contributing
+
+1. Fork the repo
+2. `git checkout -b feature/my-feature`
+3. Commit and push
+4. Open Pull Request
+
+---
+
+
+
+
