@@ -35,7 +35,15 @@ A full-featured **Library Management System** built with **React.js** (frontend)
 * ✅ Quick actions and shortcuts
 
 ---
+# College Library Management System
 
+## Sequence Diagram
+
+![Book Issue Sequence Diagram](sequence.png"Book Issue Sequence Diagram")
+
+## Use Case Diagram
+
+![Use Case Diagram](librarian.png "Use Case Diagram")
 ## 🛠 Tech Stack
 
 ### Frontend
